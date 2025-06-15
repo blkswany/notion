@@ -1,59 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Today's Info</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900" />
+  <title>Today's Info Widget</title>
   <style>
     body {
       background-color: white;
-      font-family: 'Lato', sans-serif;
+    }
+
+    #timer {
+      color: #eeeeee;
       text-align: center;
-      margin-top: 100px;
+      text-transform: uppercase;
+      font-family: 'Lato', sans-serif;
+      font-size: .7em;
+      letter-spacing: 5px;
     }
 
-    h1 {
+    .days, .hours, .minutes, .seconds {
+      display: inline-block;
+      padding: 20px;
+      width: 100px;
+      border-radius: 5px;
+    }
+
+    .days {
+      background: #EF2F3C;
+    }
+
+    .hours {
+      background: #eeeeee;
       color: #183059;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 2.5em;
     }
 
-    #date, #time {
+    .minutes {
+      background: #276FBF;
+    }
+
+    .seconds {
+      background: #F0A202;
+    }
+
+    .numbers {
+      font-family: 'Montserrat', sans-serif;
+      color: #183059;
       font-size: 2em;
-      margin: 20px 0;
-      color: #276FBF;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <h1>Today's Information</h1>
-  <div id="date"></div>
-  <div id="time"></div>
+  <div id="timer">
+    <div class="days">
+      <div id="days" class="numbers"> </div>Year
+    </div>
+    <div class="hours">
+      <div id="hours" class="numbers"> </div>Month
+    </div>
+    <div class="minutes">
+      <div id="minutes" class="numbers"> </div>Day
+    </div>
+    <div class="seconds">
+      <div id="seconds" class="numbers"> </div>Time
+    </div>
+  </div>
 
   <script>
-    function updateDateTime() {
+    function updateToday() {
       const now = new Date();
 
-      // 날짜 형식: YYYY-MM-DD (또는 다른 형식도 가능)
       const year = now.getFullYear();
       const month = String(now.getMonth() + 1).padStart(2, '0');
       const day = String(now.getDate()).padStart(2, '0');
-      const dateStr = `${year}-${month}-${day}`;
 
-      // 시간 형식: HH:MM:SS
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
       const seconds = String(now.getSeconds()).padStart(2, '0');
-      const timeStr = `${hours}:${minutes}:${seconds}`;
+      const time = `${hours}:${minutes}:${seconds}`;
 
-      document.getElementById('date').textContent = `Date: ${dateStr}`;
-      document.getElementById('time').textContent = `Time: ${timeStr}`;
+      document.getElementById("days").textContent = year;
+      document.getElementById("hours").textContent = month;
+      document.getElementById("minutes").textContent = day;
+      document.getElementById("seconds").textContent = time;
     }
 
-    // 1초마다 갱신
-    setInterval(updateDateTime, 1000);
-    updateDateTime(); // 첫 실행
+    setInterval(updateToday, 1000);
+    updateToday(); // 최초 1번 실행
   </script>
 </body>
 </html>
