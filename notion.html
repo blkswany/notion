@@ -11,7 +11,7 @@
     }
 
     #timer {
-      color: #eeeeee;
+      color: #183059;
       text-align: center;
       text-transform: uppercase;
       font-family: 'Lato', sans-serif;
@@ -24,29 +24,13 @@
       padding: 20px;
       width: 100px;
       border-radius: 5px;
-    }
-
-    .days {
-      background: #EF2F3C;
-    }
-
-    .hours {
       background: #eeeeee;
       color: #183059;
     }
 
-    .minutes {
-      background: #276FBF;
-    }
-
-    .seconds {
-      background: #F0A202;
-    }
-
     .numbers {
       font-family: 'Montserrat', sans-serif;
-      color: #183059;
-      font-size: 2em;
+      font-size: 1.3em;
       text-align: center;
     }
   </style>
@@ -54,16 +38,16 @@
 <body>
   <div id="timer">
     <div class="days">
-      <div id="days" class="numbers"> </div>Year
+      <div id="days" class="numbers"> </div>년
     </div>
     <div class="hours">
-      <div id="hours" class="numbers"> </div>Month
+      <div id="hours" class="numbers"> </div>월
     </div>
     <div class="minutes">
-      <div id="minutes" class="numbers"> </div>Day
+      <div id="minutes" class="numbers"> </div>일
     </div>
     <div class="seconds">
-      <div id="seconds" class="numbers"> </div>Time
+      <div id="time" class="numbers"> </div>시:분
     </div>
   </div>
 
@@ -72,22 +56,12 @@
       const now = new Date();
 
       const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
+      const month = now.getMonth() + 1;
+      const date = now.getDate();
 
-      const hours = String(now.getHours()).padStart(2, '0');
+      const hours = now.getHours();
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      const seconds = String(now.getSeconds()).padStart(2, '0');
-      const time = `${hours}:${minutes}:${seconds}`;
 
-      document.getElementById("days").textContent = year;
-      document.getElementById("hours").textContent = month;
-      document.getElementById("minutes").textContent = day;
-      document.getElementById("seconds").textContent = time;
-    }
-
-    setInterval(updateToday, 1000);
-    updateToday(); // 최초 1번 실행
-  </script>
-</body>
-</html>
+      document.getElementById("days").textContent = `${year}년`;
+      document.getElementById("hours").textContent = `${month}월`;
+      document.getElementById("minutes").textContent = `${date}일`
